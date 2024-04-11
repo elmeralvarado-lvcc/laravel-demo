@@ -16,10 +16,15 @@ Route::get("/path", function () {
 
 // The Local Driver
 // https://laravel.com/docs/10.x/filesystem#the-local-driver
-// Route::post('/upload', function (Request $request) {
-//     $file = $request->file;
-//     Storage::disk('local')->put('/', $file);
-// });
+Route::post('/upload', function (Request $request) {
+    $file = $request->file;
+    return Storage::disk('s3')->put('/', $file);
+});
+
+
+Route::get('/getImage', function () {
+    return Storage::disk('s3')->url('2l1VlvNZ2X4kOJ1rNYGwbsFGaTMl6WrpToNyyfPK.jpg');
+});
 
 // The Public Disk
 // https://laravel.com/docs/10.x/filesystem#the-public-disk
